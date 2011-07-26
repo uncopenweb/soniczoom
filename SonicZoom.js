@@ -132,7 +132,6 @@ dojo.declare("SonicZoom", null,{
 				this.drawStars(0);
 				
 				this.stage.update();
-				
 				this.loadImages();
 				
 				dojo.subscribe('/org/hark/prefs/response', dojo.hitch(this,'prefsCallback'));
