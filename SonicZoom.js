@@ -136,8 +136,8 @@ dojo.declare("SonicZoom", null,{
 				
 				this.loadImages();
 				
-				dojo.subscribe('/org/hark/prefs/response', dojo.hitch(this,'prefsCallback'));				                    
-                
+				dojo.subscribe('/org/hark/prefs/response', dojo.hitch(this,'prefsCallback'));
+				dojo.publish('/org/hark/prefs/request');
             }
             else{
                 console.log("Canvas Instantiation Failed.");
@@ -292,9 +292,8 @@ dojo.declare("SonicZoom", null,{
 				this.audio.say({text: "Your score is " + this.score +".  Press the escape key to return to the main menu."}).anyAfter(
 					dojo.hitch(this,function(){
 						this.keyDownEvent = dojo.connect(null, 'onkeydown', this, this.returnToMenu);
-					}));
+				}));
 			}));
-			
 		},
         
         gameTick : function(){  
@@ -1047,7 +1046,7 @@ dojo.declare("SonicZoom", null,{
 		prefsCallback : function(prefs, which){
 		
 			console.log(which, prefs);
-		
+	
 			switch(which){
 			
 				case 'speechRate':
