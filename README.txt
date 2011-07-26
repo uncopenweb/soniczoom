@@ -1,0 +1,1 @@
+A game in which the player tries to obtain the coins along a three-lane highway while avoiding the obstacles.
