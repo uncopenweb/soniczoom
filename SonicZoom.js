@@ -18,7 +18,6 @@ dojo.require("Ship");
 dojo.require("Star");
 dojo.require("Coin");
 dojo.require("Obstacle");
-dojo.require("SoundModule");
 
 dojo.declare("SonicZoom", null,{
     
