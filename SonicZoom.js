@@ -171,13 +171,13 @@ dojo.declare("SonicZoom", null,{
 			
 			this.menuBg = this.audio.addObserver(this.startMenuMusic, 'menuBackground', ['finished-play']);
 			
-			this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
+			//this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
 			this.audio.play({url:this.soundDir+'soniczoom', channel:'menuinstruction'});
 			
-			this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
+			//this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
 			this.audio.play({url:this.soundDir+'menuinstructions',  channel:'menuinstruction'});
 			
-			this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
+			//this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
 			this.audio.play({url:this.soundDir+'training',  channel:'menuinstruction'}).callAfter(dojo.hitch(this, function(){
 				
 		        this.setMenuRepeat(0);
@@ -1059,6 +1059,7 @@ dojo.declare("SonicZoom", null,{
 					//0.0-1.0
 					this.harkVolume = prefs[which];
 					this.audio.setProperty({name:'volume', value:(0.15*this.harkMusicVolume*this.harkVolume), immediate:true, channel:'menuBackground'});
+					this.audio.setProperty({name:'volume', value: this.harkEffectVolume*this.harkVolume, immediate:true, channel:'action'});
 					break;
 				case 'speechVolume':
 					//0.0-1.0
