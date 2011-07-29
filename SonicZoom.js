@@ -899,7 +899,8 @@ dojo.declare("SonicZoom", null,{
 		
 		playLaneSound:function(){
 			
-			this.audio.stop({channel:'lane'});
+			this.audio.stop({channel: 'lane'});
+			this.audio.setProperty({name: 'volume', channel: 'lane', value: this.harkVolume*this.harkSpeechVolume});
 			
 			if (this.ship.currentLane == 0) {
 				this.audio.play({
