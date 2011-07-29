@@ -354,7 +354,8 @@ dojo.declare("SonicZoom", null,{
 							this.stage.removeChild(this.objectList[i]);
 							this.score += 100;
 							this.objectList.splice(i,1);
-						
+							
+							this.audio.stop({channel : 'action'});
 							this.audio.play({
 								url: this.soundDir + 'hitcoin',
 								channel: 'action'
@@ -369,7 +370,8 @@ dojo.declare("SonicZoom", null,{
 							this.lives -= 1;
 							this.ship.speed = 0;
 							this.objectList.splice(i,1);
-						
+							
+							this.audio.stop({channel : 'action'});
 							this.audio.play({
 								url: this.soundDir + 'hitobstacle',
 								channel: 'action'
