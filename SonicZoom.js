@@ -170,10 +170,14 @@ dojo.declare("SonicZoom", null,{
 			this.startMenuMusic(undefined);
 			
 			this.menuBg = this.audio.addObserver(this.startMenuMusic, 'menuBackground', ['finished-play']);
-						
+			
+			this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : harkVolume*harkSpeechVolume, immediate : true});
 			this.audio.play({url:this.soundDir+'soniczoom', channel:'menuinstruction'});
+			
+			this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : harkVolume*harkSpeechVolume, immediate : true});
 			this.audio.play({url:this.soundDir+'menuinstructions',  channel:'menuinstruction'});
 			
+			this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : harkVolume*harkSpeechVolume, immediate : true});
 			this.audio.play({url:this.soundDir+'training',  channel:'menuinstruction'}).callAfter(dojo.hitch(this, function(){
 				
 		        this.setMenuRepeat(0);
