@@ -1074,7 +1074,7 @@ dojo.declare("SonicZoom", null,{
 		//Handles game pausing
 		pauseCallBack : function(paused)
 		{
-			if(paused)
+			/**if(paused)
 			{
 				this.lastTick=this.tick; //Save tick for unpausing later
 				this.tick=function(){};
@@ -1084,7 +1084,7 @@ dojo.declare("SonicZoom", null,{
 			{
 				if(this.tick!=this.gameTick)
 					this.tick=this.lastTick;
-			}
+			}*/
 		},
 		
 		///HARK Stuff
