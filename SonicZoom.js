@@ -953,8 +953,8 @@ dojo.declare("SonicZoom", null,{
 			
 			this.audio.stop({channel:'engine'});
 			this.audio.play({url: this.soundDir+'engine', channel:'engine'});
-			//this.ship.engineVolume*this.harkEffectVolume*this.harkVolume
-			this.audio.setProperty({name:'volume', value:this.harkEffectVolume*this.harkVolume, immediate:true, channel:'engine'});
+			
+			this.audio.setProperty({name:'volume', value:this.ship.engineVolume*this.harkEffectVolume*this.harkVolume, immediate:true, channel:'engine'});
 			this.audio.setProperty({name:'loop', value:true, immediate:true, channel:'engine'});
 		},
 		
