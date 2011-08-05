@@ -1069,64 +1069,25 @@ dojo.declare("SonicZoom", null,{
 		},
 		
 		///HARK Stuff
-		prefsCallback : function(prefs, which){
-			console.log(which, prefs);
+		prefsCallback : function(prefs, which)
+		{
+			this.gettingHarkPreferences=false;
 			
-			//Are we setting variables at the beginning on the initial prefs call?
-			if(this.gettingHarkPreferences)
-			{
-				this.gettingHarkPreferences=false;
+			this.harkVolume=prefs.volume;
+			this.harkSpeechVolume=prefs.speechVolume;
+			this.harkEffectVolume=prefs.soundVolume;
+			this.harkMusicVolume=prefs.musicVolume;
+			
+			//Apply newly set volume properties to certain channels
+			this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true});
+			this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'menuinstruction'});
+			this.audio.setProperty({name:'volume', value:(0.15*this.harkMusicVolume*this.harkVolume), immediate:true, channel:'menuBackground'});
+			this.audio.setProperty({name:'volume', value: this.harkEffectVolume*this.harkVolume, immediate:true, channel:'action'});
+			this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'otherinstruction'});
 				
-				this.harkVolume=prefs.volume;
-				this.harkSpeechVolume=prefs.speechVolume;
-				this.harkEffectVolume=prefs.soundVolume;
-				this.harkMusicVolume=prefs.musicVolume;
-				
-				//Also set speech rate of certain channels
-				this.audio.setProperty({name : 'rate', value : prefs.speechRate});
-				this.audio.setProperty({name : 'rate', value : prefs.speechRate, channel : 'menuinstruction'});
-			}
-			
-			switch(which){
-			
-				case 'speechRate':
-					//80-400
-					this.audio.setProperty({name : 'rate', value : prefs[which]});
-					this.audio.setProperty({name : 'rate', value : prefs[which], channel : 'menuinstruction'});
-					break;
-				case 'volume':
-					//0.0-1.0
-					this.harkVolume = prefs[which];
-					
-					this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true});
-					this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'menuinstruction'});
-					this.audio.setProperty({name:'volume', value:(0.15*this.harkMusicVolume*this.harkVolume), immediate:true, channel:'menuBackground'});
-					this.audio.setProperty({name:'volume', value: this.harkEffectVolume*this.harkVolume, immediate:true, channel:'action'});
-					this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'otherinstruction'});
-					
-					break;
-				case 'speechVolume':
-					//0.0-1.0
-					this.harkSpeechVolume = prefs[which];
-					this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true});
-					this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'menuinstruction'});
-					this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'otherinstruction'});
-					
-					break;
-				case 'soundVolume':
-					//0.0-1.0
-					this.harkEffectVolume = prefs[which];
-					break;
-				case 'musicVolume':
-					//0.0-1.0
-					this.harkMusicVolume = prefs[which];
-					this.audio.setProperty({name:'volume', value:(0.15*this.harkMusicVolume*this.harkVolume), immediate:true, channel:'menuBackground'});
-					break;
-		
-			}
-		
-			console.log(this.harkVolume,this.harkSpeechVolume,this.harkEffectVolume,this.harkMusicVolume);
-		
+			//Also set speech rate of certain channels
+			this.audio.setProperty({name : 'rate', value : prefs.speechRate});
+			this.audio.setProperty({name : 'rate', value : prefs.speechRate, channel : 'menuinstruction'});
 		}
     
     
