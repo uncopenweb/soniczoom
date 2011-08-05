@@ -522,6 +522,7 @@ dojo.declare("SonicZoom", null,{
 			this.tick = this.gameTick;
 			
 			this.playCoinSound();
+			this.setEngineNoise();
 		},
 		
 		drawUI:function(){
