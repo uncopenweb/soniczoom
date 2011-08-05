@@ -1087,7 +1087,7 @@ dojo.declare("SonicZoom", null,{
 			this.audio.setProperty({name:'volume', value:(0.15*this.harkMusicVolume*this.harkVolume), immediate:true, channel:'menuBackground'});
 			this.audio.setProperty({name:'volume', value: this.harkEffectVolume*this.harkVolume, immediate:true, channel:'action'});
 			this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'otherinstruction'});
-			this.audio.setProperty({name:'volume', value:this.harkEffectVolume*this.harkVolume, immediate:true, channel:'engine'});
+			this.audio.setProperty({name:'volume', value:this.ship.engineVolume*this.harkEffectVolume*this.harkVolume, immediate:true, channel:'engine'});
 			
 			//Also set speech rate of certain channels
 			this.audio.setProperty({name : 'rate', value : prefs.speechRate});
