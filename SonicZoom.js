@@ -1069,7 +1069,7 @@ dojo.declare("SonicZoom", null,{
 		
 		///HARK Stuff
 		prefsCallback : function(prefs, which){
-		
+			console.log('Prefs!');
 			console.log(which, prefs);
 	
 			switch(which){
