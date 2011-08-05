@@ -8,7 +8,7 @@ dojo.declare("Ship", [Container],{
 	currentLane:1,
 	numberOfLanes:3,
 	speed:0,
-	engineVolume: .05,
+	engineVolume: .075,
 	
 	hitRadius:0,
 	

@@ -254,7 +254,6 @@ dojo.declare("SonicZoom", null,{
 			this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
 			this.audio.say({text: "Level" + this.currentLevel, channel: 'menuinstruction'}).anyAfter(dojo.hitch(this, function()
 			{
-				console.log('asdfasdfsadf');
 				this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
 			}));
 			
