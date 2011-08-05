@@ -1081,7 +1081,10 @@ dojo.declare("SonicZoom", null,{
 			}
 			
 			else
-				this.tick=this.lastTick;
+			{
+				if(this.tick!=this.gameTick)
+					this.tick=this.lastTick;
+			}
 		},
 		
 		///HARK Stuff
