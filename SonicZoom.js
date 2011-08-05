@@ -131,11 +131,11 @@ dojo.declare("SonicZoom", null,{
 				this.displayWelcome();
 				this.drawStars(0);
 				
-				this.stage.update();
-				this.loadImages();
-				
 				dojo.subscribe('/org/hark/prefs/response', dojo.hitch(this,'prefsCallback'));
 				dojo.publish('/org/hark/prefs/request');
+				
+				this.stage.update();
+				this.loadImages();
             }
             else{
                 console.log("Canvas Instantiation Failed.");
