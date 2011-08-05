@@ -1087,11 +1087,17 @@ dojo.declare("SonicZoom", null,{
 					this.harkVolume = prefs[which];
 					this.audio.setProperty({name:'volume', value:(0.15*this.harkMusicVolume*this.harkVolume), immediate:true, channel:'menuBackground'});
 					this.audio.setProperty({name:'volume', value: this.harkEffectVolume*this.harkVolume, immediate:true, channel:'action'});
+					
+					//Change speech volume in middle of long speeches
+					if(this.sayingSpeech!='none')
+						this.audio.setProperty({name: 'volume', channel: this.sayingSpeech, value: this.harkVolume*this.harkSpeechVolume, immediate: true});
+						
 					break;
 				case 'speechVolume':
 					//0.0-1.0
 					this.harkSpeechVolume = prefs[which];
 					
+					//Change speech volume in middle of long speeches
 					if(this.sayingSpeech!='none')
 						this.audio.setProperty({name: 'volume', channel: this.sayingSpeech, value: this.harkVolume*this.harkSpeechVolume, immediate: true});
 						
