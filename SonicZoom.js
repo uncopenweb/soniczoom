@@ -795,16 +795,24 @@ dojo.declare("SonicZoom", null,{
 				case KEYCODE_UP:
 					if (true) {
 						this.fwdHeld = true;
-						this.ship.accelerate();
-						this.setEngineNoise();
+						
+						if(!e.shiftKey)
+						{
+							this.ship.accelerate();
+							this.setEngineNoise();
+						}
 					} 
 					break;
 				case KEYCODE_S:
 				case KEYCODE_DOWN:
 					if (true) {
 						this.dnHeld = true;
-						this.ship.deccelerate();
-						this.setEngineNoise();
+						
+						if(!e.shiftKey)
+						{
+							this.ship.deccelerate();
+							this.setEngineNoise();
+						}
 					} 
 					break;
 				case KEYCODE_ESC:
