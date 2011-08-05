@@ -1074,7 +1074,7 @@ dojo.declare("SonicZoom", null,{
 		pauseCallBack : function(paused)
 		{
 			console.log("Paused!");
-		}
+		},
 		
 		///HARK Stuff
 		prefsCallback : function(prefs, which)
