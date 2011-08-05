@@ -467,7 +467,7 @@ dojo.declare("SonicZoom", null,{
 			this.clicker = dojo.connect(this.canvas, 'onclick', this, this.menuInit);
 			this.keyDownEvent = dojo.connect(null, 'onkeydown', this, this.menuInit); 
 			this.loadingText.text = "Press Any Key to Play!";
-			
+			console.log("Beginning");
 			this.audio.setProperty({name : 'volume', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
 			this.audio.say({text:"Press any key to play"});
 			
