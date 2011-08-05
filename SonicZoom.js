@@ -23,6 +23,7 @@ dojo.declare("SonicZoom", null,{
     
 		debug:false,
 		gettingHarkPreferences:true, //On beginning prefs call, make sure we set all preferences, not just one.
+		lastTick:null,
 		
 		//set up objects
         canvas_id:undefined,
@@ -1073,7 +1074,14 @@ dojo.declare("SonicZoom", null,{
 		//Handles game pausing
 		pauseCallBack : function(paused)
 		{
-			console.log("Paused!");
+			if(paused)
+			{
+				this.lastTick=this.tick; //Save tick for unpausing later
+				this.tick=function(){};
+			}
+			
+			else
+				this.tick=this.lastTick;
 		},
 		
 		///HARK Stuff
