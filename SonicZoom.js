@@ -470,7 +470,7 @@ dojo.declare("SonicZoom", null,{
 			this.loadingText.text = "Press Any Key to Play!";
 			
 			this.audio.setProperty({name : 'volume', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
-			this.audio.say({text:"Press any key to play"});
+			this.audio.say({text:"Press any key to playasdfafdafdasdfasdfasfdsadfasfdsdasfsfdasdfasdfasfdasfdasfdagsdgfsdgd"});
 			
 			this.stage.update();
 				 
