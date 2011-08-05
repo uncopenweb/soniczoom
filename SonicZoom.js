@@ -305,7 +305,7 @@ dojo.declare("SonicZoom", null,{
 			dojo.disconnect(this.clicker);
 			dojo.disconnect(this.keyDownEvent);
 			
-			//this.tick = function(){};
+			this.tick = function(){};
 			this.stopGameAudio();
 			
 			this.audio.setProperty({name : 'volume', channel : 'otherinstruction', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
