@@ -134,7 +134,8 @@ dojo.declare("SonicZoom", null,{
 				
 				this.ship = new Ship({canvasHeight:this.canvas.height, canvasWidth:this.canvas.width, TOGGLE:Math.floor(this.fps/12), numberOfLanes:this.numberOfLanes});
 				
-				dojo.subscribe('/org/hark/prefs/response', dojo.hitch(this,'prefsCallback'));
+				dojo.subscribe('/org/hark/pause', dojo.hitch(this, 'pauseCallBack'));
+				dojo.subscribe('/org/hark/prefs/response', dojo.hitch(this, 'prefsCallback'));
 				dojo.publish('/org/hark/prefs/request');
 				
 				this.stage.update();
@@ -1068,6 +1069,12 @@ dojo.declare("SonicZoom", null,{
 				}
 			}
 		},
+		
+		//Handles game pausing
+		pauseCallBack : function(paused)
+		{
+			console.log("Paused!");
+		}
 		
 		///HARK Stuff
 		prefsCallback : function(prefs, which)
