@@ -798,10 +798,7 @@ dojo.declare("SonicZoom", null,{
 						this.fwdHeld = true;
 						
 						if(!e.shiftKey)
-						{
 							this.ship.accelerate();
-							this.setEngineNoise();
-						}
 					} 
 					break;
 				case KEYCODE_S:
@@ -810,10 +807,7 @@ dojo.declare("SonicZoom", null,{
 						this.dnHeld = true;
 						
 						if(!e.shiftKey)
-						{
 							this.ship.deccelerate();
-							this.setEngineNoise();
-						}
 					} 
 					break;
 				case KEYCODE_ESC:
@@ -1093,7 +1087,9 @@ dojo.declare("SonicZoom", null,{
 			this.audio.setProperty({name:'volume', value:(0.15*this.harkMusicVolume*this.harkVolume), immediate:true, channel:'menuBackground'});
 			this.audio.setProperty({name:'volume', value: this.harkEffectVolume*this.harkVolume, immediate:true, channel:'action'});
 			this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'otherinstruction'});
-				
+			
+			this.setEngineNoise();
+			
 			//Also set speech rate of certain channels
 			this.audio.setProperty({name : 'rate', value : prefs.speechRate});
 			this.audio.setProperty({name : 'rate', value : prefs.speechRate, channel : 'menuinstruction'});
