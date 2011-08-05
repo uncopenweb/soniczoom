@@ -22,6 +22,7 @@ dojo.require("Obstacle");
 dojo.declare("SonicZoom", null,{
     
 		debug:false,
+		gettingHarkPreferences:true, //On beginning prefs call, make sure we set all preferences, not just one.
 		
 		//set up objects
         canvas_id:undefined,
@@ -467,7 +468,7 @@ dojo.declare("SonicZoom", null,{
 			this.clicker = dojo.connect(this.canvas, 'onclick', this, this.menuInit);
 			this.keyDownEvent = dojo.connect(null, 'onkeydown', this, this.menuInit); 
 			this.loadingText.text = "Press Any Key to Play!";
-			console.log("Beginning");
+			
 			this.audio.setProperty({name : 'volume', value : this.harkVolume*this.harkSpeechVolume, immediate : true});
 			this.audio.say({text:"Press any key to play"});
 			
@@ -1069,9 +1070,23 @@ dojo.declare("SonicZoom", null,{
 		
 		///HARK Stuff
 		prefsCallback : function(prefs, which){
-			console.log('Prefs!');
 			console.log(which, prefs);
-	
+			
+			//Are we setting variables at the beginning on the initial prefs call?
+			if(this.gettingHarkPreferences)
+			{
+				this.gettingHarkPreferences=false;
+				
+				this.harkVolume=prefs.volume;
+				this.harkSpeechVolume=prefs.speechVolume;
+				this.harkEffectVolume=prefs.soundVolume;
+				this.harkMusicVolume=prefs.musicVolume;
+				
+				//Also set speech rate of certain channels
+				this.audio.setProperty({name : 'rate', value : prefs.speechRate});
+				this.audio.setProperty({name : 'rate', value : prefs.speechRate, channel : 'menuinstruction'});
+			}
+			
 			switch(which){
 			
 				case 'speechRate':
