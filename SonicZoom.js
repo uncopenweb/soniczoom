@@ -950,7 +950,6 @@ dojo.declare("SonicZoom", null,{
 		},
 		
 		startEngineNoise : function(){
-			console.log('engines!');
 			this.audio.stop({channel:'engine'});
 			this.audio.play({url: this.soundDir+'engine', channel:'engine'});
 			
