@@ -777,9 +777,13 @@ dojo.declare("SonicZoom", null,{
 				case KEYCODE_LEFT:
 					if (!this.lfHeld) {
 						this.lfHeld = true;
-						this.ship.moveLeft();
-						this.changeCoinSound();
-						this.playLaneSound();
+						
+						if(!e.shiftKey)
+						{
+							this.ship.moveLeft();
+							this.changeCoinSound();
+							this.playLaneSound();
+						}
 					}
 					break;
 				case KEYCODE_D:
@@ -787,9 +791,13 @@ dojo.declare("SonicZoom", null,{
 					if (!this.rtHeld) {
 						//console.log("right");
 						this.rtHeld = true;
-						this.ship.moveRight();
-						this.changeCoinSound();
-						this.playLaneSound();
+						
+						if(!e.shiftKey)
+						{
+							this.ship.moveRight();
+							this.changeCoinSound();
+							this.playLaneSound();
+						}
 					}
 					break;
 				case KEYCODE_W:
