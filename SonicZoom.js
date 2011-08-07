@@ -1108,6 +1108,7 @@ dojo.declare("SonicZoom", null,{
 		
 		///HARK Stuff
 		prefsCallback : function(prefs, which){
+			console.log('Prefs call!');
 			this.harkVolume=prefs.volume;
 			this.harkSpeechVolume=prefs.speechVolume;
 			this.harkEffectVolume=prefs.soundVolume;
