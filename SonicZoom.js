@@ -514,8 +514,13 @@ dojo.declare("SonicZoom", null,{
 			var secondsElapsed = ticks/this.fps;
 			
 			this.levelStartTime = Math.floor(ticks/this.fps);
-						
-			this.tick = this.gameTick;
+			
+			//Take pausing into account in case game is paused just before the start of a level
+			if(!this.pause)
+				this.tick = this.gameTick;
+				
+			else
+				this.lastTick=this.gameTick;
 			
 			this.playCoinSound();
 		},
@@ -1089,21 +1094,20 @@ dojo.declare("SonicZoom", null,{
 		{
 			if(paused)
 			{
+				this.pause=true;
 				this.lastTick=this.tick; //Save tick for unpausing later
 				this.tick=function(){};
 			}
 			
 			else
 			{
-				//Prevents game from freezing if pause occured just before starting a level
-				if(this.tick!=this.gameTick)
-					this.tick=this.lastTick;
+				this.pause=false;
+				this.tick=this.lastTick;
 			}
 		},
 		
 		///HARK Stuff
 		prefsCallback : function(prefs, which){
-			console.log('Prefs call!');
 			this.harkVolume=prefs.volume;
 			this.harkSpeechVolume=prefs.speechVolume;
 			this.harkEffectVolume=prefs.soundVolume;
