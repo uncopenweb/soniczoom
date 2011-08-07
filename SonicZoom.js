@@ -715,24 +715,32 @@ dojo.declare("SonicZoom", null,{
 					break;
 				case KEYCODE_W:
 				case KEYCODE_UP:
-					if (!this.fwdHeld && this.menuPos > 0) {
-						this.fwdHeld = true;
-						this.menuStar.y = this.menuStar.y - 50;
-						this.menuPos = this.menuPos-1;
-					} 
-					this.playMenuChoice();
-					this.setMenuRepeat(this.menuPos);
+					if(!e.shiftKey)
+					{
+						if (!this.fwdHeld && this.menuPos > 0) {
+							this.fwdHeld = true;
+							this.menuStar.y = this.menuStar.y - 50;
+							this.menuPos = this.menuPos-1;
+						} 
+						this.playMenuChoice();
+						this.setMenuRepeat(this.menuPos);
+					}
+					
 					break;
 					
 				case KEYCODE_S:
 				case KEYCODE_DOWN:
-					if (!this.dnHeld && this.menuPos < (this.menuItems-1)) {
-						this.dnHeld = true;
-						this.menuStar.y = this.menuStar.y + 50;
-						this.menuPos = this.menuPos+1;
-					} 
-					this.playMenuChoice();
-					this.setMenuRepeat(this.menuPos);
+					if(!e.shiftKey)
+					{
+						if (!this.dnHeld && this.menuPos < (this.menuItems-1)) {
+							this.dnHeld = true;
+							this.menuStar.y = this.menuStar.y + 50;
+							this.menuPos = this.menuPos+1;
+						} 
+						this.playMenuChoice();
+						this.setMenuRepeat(this.menuPos);
+					}
+					
 					break;
 			}
 			
