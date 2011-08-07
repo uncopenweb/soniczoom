@@ -956,7 +956,6 @@ dojo.declare("SonicZoom", null,{
 					
 					var coinSound = this.soundDir + objectType + (this.numberOfLanes-this.objectList[i].lane) + '-' + (this.numberOfLanes-this.ship.currentLane)
 					
-					this.audio.stop({channel : 'coin'+i});
 					this.audio.play({
 						url: coinSound,
 						channel: 'coin'+i
