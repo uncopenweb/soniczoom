@@ -466,7 +466,7 @@ dojo.declare("SonicZoom", null,{
 			this.keyDownEvent = dojo.connect(null, 'onkeydown', this, this.menuInit); 
 			this.loadingText.text = "Press Any Key to Play!";
 			
-			this.speak("Press any key to playasdfasfdasfdasdfasdfadsf", 'default', false);
+			this.speak("Press any key to play", 'default', false);
 			
 			this.stage.update();
 				 
