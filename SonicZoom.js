@@ -872,6 +872,8 @@ dojo.declare("SonicZoom", null,{
 		},
 		
 		playMenuChoice : function() {
+			this.audio.stop({channel : 'menuinstruction'});
+			
 			if (this.menuPos == 0) {
 				this.menuTimer.stop();
 				
