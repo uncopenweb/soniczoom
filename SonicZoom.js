@@ -1096,7 +1096,7 @@ dojo.declare("SonicZoom", null,{
 			{
 				this.pause=true;
 				this.lastTick=this.tick; //Save tick for unpausing later
-				this.tick=function(){};
+				this.tick=function(){this.playCoinSound();};
 			}
 			
 			else
@@ -1108,7 +1108,6 @@ dojo.declare("SonicZoom", null,{
 		
 		///HARK Stuff
 		prefsCallback : function(prefs, which){
-			console.log('Prefs call!');
 			this.harkVolume=prefs.volume;
 			this.harkSpeechVolume=prefs.speechVolume;
 			this.harkEffectVolume=prefs.soundVolume;
