@@ -948,7 +948,7 @@ dojo.declare("SonicZoom", null,{
 		},
 		
 		playCoinSound:function(){
-			
+			console.log('Playing Coin Sound');
 						
 			if (this.objectList.length > 0) {
 				for (var i in this.objectList){
