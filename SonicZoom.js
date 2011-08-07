@@ -365,6 +365,7 @@ dojo.declare("SonicZoom", null,{
 							this.objectList.splice(i,1);
 							
 							this.audio.stop({channel : 'action'});
+							this.audio.setProperty({name : 'volume', channel : 'action', value : this.harkVolume*this.harkEffectVolume});
 							this.audio.play({
 								url: this.soundDir + 'hitcoin',
 								channel: 'action'
@@ -381,6 +382,7 @@ dojo.declare("SonicZoom", null,{
 							this.objectList.splice(i,1);
 							
 							this.audio.stop({channel : 'action'});
+							this.audio.setProperty({name : 'volume', channel : 'action', value : this.harkVolume*this.harkEffectVolume});
 							this.audio.play({
 								url: this.soundDir + 'hitobstacle',
 								channel: 'action'
@@ -1077,9 +1079,6 @@ dojo.declare("SonicZoom", null,{
 		
 		///HARK Stuff
 		prefsCallback : function(prefs, which){
-		
-			console.log(which, prefs);
-	
 			switch(which){
 			
 				case 'speechRate':
@@ -1107,9 +1106,6 @@ dojo.declare("SonicZoom", null,{
 					break;
 		
 			}
-		
-			console.log(this.harkVolume,this.harkSpeechVolume,this.harkEffectVolume,this.harkMusicVolume);
-		
 		}
     
     
