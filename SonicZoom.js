@@ -131,8 +131,6 @@ dojo.declare("SonicZoom", null,{
 				this.displayWelcome();
 				this.drawStars(0);
 				
-				this.ship = new Ship({canvasHeight:this.canvas.height, canvasWidth:this.canvas.width, TOGGLE:Math.floor(this.fps/12), numberOfLanes:this.numberOfLanes});
-				
 				dojo.subscribe('/org/hark/pause', dojo.hitch(this, 'pauseCallBack'));
 				dojo.subscribe('/org/hark/prefs/response', dojo.hitch(this, 'prefsCallback'));
 				dojo.publish('/org/hark/prefs/request');
@@ -156,7 +154,7 @@ dojo.declare("SonicZoom", null,{
 			this.objectList = [];	
 			this.score = 0;
 			
-			this.audio.stop({channel:'menuinstruction'});
+			this.audio.stop({channel:'verbalinstruction'});
 			this.audio.stop({channel:'menuBackground'});
 			this.audio.stop({channel:'lane'});
 			this.audio.stop({channel:'coin0'});
@@ -174,18 +172,18 @@ dojo.declare("SonicZoom", null,{
 			
 			this.menuBg = this.audio.addObserver(this.startMenuMusic, 'menuBackground', ['finished-play']);
 			
-			this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume});
-			this.audio.play({url : this.soundDir+'soniczoom', channel : 'menuinstruction'}).anyAfter(dojo.hitch(this, function()
+			this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
+			this.audio.play({url : this.soundDir+'soniczoom', channel : 'verbalinstruction'}).anyAfter(dojo.hitch(this, function()
 			{
-				this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume});
+				this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
 			}));
 			
-			this.audio.play({url : this.soundDir+'menuinstructions', channel : 'menuinstruction'}).anyAfter(dojo.hitch(this, function()
+			this.audio.play({url : this.soundDir+'menuinstructions', channel : 'verbalinstruction'}).anyAfter(dojo.hitch(this, function()
 			{
-				this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume});
+				this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
 			}));
 			
-			this.audio.play({url : this.soundDir+'training', channel : 'menuinstruction'}).callAfter(dojo.hitch(this, function(){
+			this.audio.play({url : this.soundDir+'training', channel : 'verbalinstruction'}).callAfter(dojo.hitch(this, function(){
 				
 		        this.setMenuRepeat(0);
 			
@@ -251,10 +249,10 @@ dojo.declare("SonicZoom", null,{
 			this.objectSpeed = Math.floor(1+(level-1)*0.5);
 			if (this.objectSpeed > 6) this.objectSpeed = 6;		
 			this.tick = function(){};
-			this.speak("Level" + this.currentLevel, 'menuinstruction', true);
+			this.speak("Level" + this.currentLevel, 'verbalinstruction', true);
 			
-			this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume});
-			this.audio.play({url : this.soundDir+'readysetgo', channel : 'menuinstruction'}).anyAfter(dojo.hitch(this,'beginGame'));
+			this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
+			this.audio.play({url : this.soundDir+'readysetgo', channel : 'verbalinstruction'}).anyAfter(dojo.hitch(this,'beginGame'));
 			
 			this.coinsToDraw = 10+(level);
 			this.obstaclesToDraw = 0;
@@ -279,11 +277,11 @@ dojo.declare("SonicZoom", null,{
 			this.tick = function(){};
 			this.stopGameAudio();
 			
-			this.audio.setProperty({name : 'volume', channel : 'otherinstruction', value : this.harkVolume*this.harkSpeechVolume});
-			this.audio.play({url : this.soundDir+'levelend', channel : 'otherinstruction'}).anyAfter(dojo.hitch(this,function(){
+			this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
+			this.audio.play({url : this.soundDir+'levelend', channel : 'verbalinstruction'}).anyAfter(dojo.hitch(this,function(){
 				this.speak("" + this.score, 'default', false, dojo.hitch(this,function(){
-					this.audio.setProperty({name : 'volume', channel : 'otherinstruction', value : this.harkVolume*this.harkSpeechVolume});
-					this.audio.play({url : this.soundDir+'startnext', channel : 'otherinstruction'}).anyAfter(dojo.hitch(this,function(){
+					this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
+					this.audio.play({url : this.soundDir+'startnext', channel : 'verbalinstruction'}).anyAfter(dojo.hitch(this,function(){
 						this.keyDownEvent = dojo.connect(null, 'onkeydown', this, function(){
 							this.currentLevel += 1;
 							console.log("Going into level "+this.currentLevel);
@@ -302,8 +300,8 @@ dojo.declare("SonicZoom", null,{
 			this.tick = function(){};
 			this.stopGameAudio();
 			
-			this.audio.setProperty({name : 'volume', channel : 'otherinstruction', value : this.harkVolume*this.harkSpeechVolume});
-			this.audio.play({url : this.soundDir+'death', channel : 'otherinstruction'}).anyAfter(dojo.hitch(this,function(){
+			this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
+			this.audio.play({url : this.soundDir+'death', channel : 'verbalinstruction'}).anyAfter(dojo.hitch(this,function(){
 				this.speak("Your score is " + this.score +".  Press the escape key to return to the main menu.", 'default', false, dojo.hitch(this,function(){
 					this.keyDownEvent = dojo.connect(null, 'onkeydown', this, this.returnToMenu);
 				}));
@@ -368,7 +366,7 @@ dojo.declare("SonicZoom", null,{
 							this.objectList.splice(i,1);
 							
 							this.audio.stop({channel : 'action'});
-							//this.audio.setProperty({name : 'volume', channel : 'action', value : this.harkVolume*this.harkEffectVolume});
+							this.audio.setProperty({name : 'volume', channel : 'action', value : this.harkVolume*this.harkEffectVolume});
 							this.audio.play({
 								url: this.soundDir + 'hitcoin',
 								channel: 'action'
@@ -385,7 +383,7 @@ dojo.declare("SonicZoom", null,{
 							this.objectList.splice(i,1);
 							
 							this.audio.stop({channel : 'action'});
-							//this.audio.setProperty({name : 'volume', channel : 'action', value : this.harkVolume*this.harkEffectVolume});
+							this.audio.setProperty({name : 'volume', channel : 'action', value : this.harkVolume*this.harkEffectVolume});
 							this.audio.play({
 								url: this.soundDir + 'hitobstacle',
 								channel: 'action'
@@ -551,6 +549,7 @@ dojo.declare("SonicZoom", null,{
 		},
 		
 		drawShip : function(){
+			this.ship = new Ship({canvasHeight:this.canvas.height, canvasWidth:this.canvas.width, TOGGLE:Math.floor(this.fps/12), numberOfLanes:this.numberOfLanes});
 			this.ship.reset();
 			this.stage.addChild(this.ship);
 		},
@@ -863,7 +862,7 @@ dojo.declare("SonicZoom", null,{
 		
 		selectMenuOption : function() {
 			
-			this.audio.stop({channel:'menuinstruction'});
+			this.audio.stop({channel:'verbalinstruction'});
 			
 			this.menuTimer.stop();
 			
@@ -877,16 +876,16 @@ dojo.declare("SonicZoom", null,{
 				this.keyDownEvent = dojo.connect(null, 'onkeydown', this, this.returnToMenu);
 				
 				//play training
-				this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume});
-				this.audio.play({url : this.soundDir+'traininginstructions', channel : 'menuinstruction'}).anyAfter(dojo.hitch(this, 'menuInit'));
+				this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
+				this.audio.play({url : this.soundDir+'traininginstructions', channel : 'verbalinstruction'}).anyAfter(dojo.hitch(this, 'menuInit'));
 				
 				//re-attach listener
-				this.trainingOver = this.audio.addObserver(this.returnToMenu, 'menuinstruction', ['finished-play']);
+				this.trainingOver = this.audio.addObserver(this.returnToMenu, 'verbalinstruction', ['finished-play']);
 				
 			}
 			else if(this.menuPos == 1){
 				//Game On!
-				this.audio.stop({channel:'menuinstruction'});
+				this.audio.stop({channel:'verbalinstruction'});
 				this.audio.stop({channel:'lane'});
 				this.levelStart(1);
 				
@@ -896,25 +895,25 @@ dojo.declare("SonicZoom", null,{
 		},
 		
 		playMenuChoice : function() {
-			this.audio.stop({channel : 'menuinstruction'});
+			this.audio.stop({channel : 'verbalinstruction'});
 			
 			if (this.menuPos == 0) {
 				this.menuTimer.stop();
 				
-				this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume});
-				this.audio.play({url : this.soundDir + 'training', channel : 'menuinstruction'});
+				this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
+				this.audio.play({url : this.soundDir + 'training', channel : 'verbalinstruction'});
 			}
 			else if (this.menuPos == 1) {
 				this.menuTimer.stop();
 				
-				this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume});
-				this.audio.play({url : this.soundDir + 'startgame', channel : 'menuinstruction'});
+				this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
+				this.audio.play({url : this.soundDir + 'startgame', channel : 'verbalinstruction'});
 			}
 		},
 		
 		returnToMenu : function(e){
 			if(e.keyCode == KEYCODE_ESC){
-				this.audio.stop({channel: 'menuinstruction'});
+				this.audio.stop({channel: 'verbalinstruction'});
 				dojo.disconnect(this.keyDownEvent);
 				dojo.disconnect(this.keyUpEvent);
 				
@@ -1038,8 +1037,8 @@ dojo.declare("SonicZoom", null,{
 			
 			
 			this.menuTimer.onTick = dojo.hitch(this, function(){
-				this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkSpeechVolume});
-				this.audio.play({url : this.soundDir+soundByte, channel : 'menuinstruction'});
+				this.audio.setProperty({name : 'volume', channel : 'verbalinstruction', value : this.harkVolume*this.harkSpeechVolume});
+				this.audio.play({url : this.soundDir+soundByte, channel : 'verbalinstruction'});
 				});
 				
 			this.menuTimer.start();
@@ -1109,15 +1108,15 @@ dojo.declare("SonicZoom", null,{
 			
 			//Apply newly set volume properties to certain channels
 			this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true});
-			this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'menuinstruction'});
 			this.audio.setProperty({name:'volume', value:(0.15*this.harkMusicVolume*this.harkVolume), immediate:true, channel:'menuBackground'});
-			this.audio.setProperty({name:'volume', value: this.harkEffectVolume*this.harkVolume, immediate:true, channel:'action'});
-			this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'otherinstruction'});
-			this.audio.setProperty({name:'volume', value: this.ship.engineVolume*this.harkEffectVolume*this.harkVolume, immediate:true, channel:'engine'});
+			this.audio.setProperty({name:'volume', value: this.harkSpeechVolume*this.harkVolume, immediate:true, channel:'verbalinstruction'});
+			
+			if(this.ship!=undefined)
+				this.audio.setProperty({name:'volume', value: this.ship.engineVolume*this.harkEffectVolume*this.harkVolume, immediate:true, channel:'engine'});
 			
 			//Also set speech rate of certain channels
 			this.audio.setProperty({name : 'rate', value : prefs.speechRate, immediate : true});
-			this.audio.setProperty({name : 'rate', value : prefs.speechRate, channel : 'menuinstruction', immediate : true});
+			this.audio.setProperty({name : 'rate', value : prefs.speechRate, channel : 'verbalinstruction', immediate : true});
 		}
     
     
