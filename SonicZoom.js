@@ -22,6 +22,7 @@ dojo.require("Obstacle");
 dojo.declare("SonicZoom", null,{
     
 		debug:false,
+		lastTick:null,
 	
 		//set up objects
         canvas_id:undefined,
@@ -1086,7 +1087,7 @@ dojo.declare("SonicZoom", null,{
 		//Handles game pausing
 		pauseCallBack : function(paused)
 		{
-			/**if(paused)
+			if(paused)
 			{
 				this.lastTick=this.tick; //Save tick for unpausing later
 				this.tick=function(){};
@@ -1094,13 +1095,15 @@ dojo.declare("SonicZoom", null,{
 			
 			else
 			{
+				//Prevents game from freezing if pause occured just before starting a level
 				if(this.tick!=this.gameTick)
 					this.tick=this.lastTick;
-			}*/
+			}
 		},
 		
 		///HARK Stuff
 		prefsCallback : function(prefs, which){
+			console.log('Prefs call!');
 			this.harkVolume=prefs.volume;
 			this.harkSpeechVolume=prefs.speechVolume;
 			this.harkEffectVolume=prefs.soundVolume;
