@@ -172,7 +172,7 @@ dojo.declare("SonicZoom", null,{
 			this.menuBg = this.audio.addObserver(this.startMenuMusic, 'menuBackground', ['finished-play']);
 			
 			this.playSound(this.soundDir+'soniczoom', 'menuinstruction', false);
-			this.playSound(this.soundDir+'menuinstructions', 'menuinstruction', dojo.hitch(this, function()
+			this.playSound(this.soundDir+'menuinstructions', 'menuinstruction', false, dojo.hitch(this, function()
 			{
 				this.audio.setProperty({name : 'volume', channel : 'menuinstruction', value : this.harkVolume*this.harkEffectVolume});
 			}));
