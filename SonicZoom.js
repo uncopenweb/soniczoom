@@ -948,8 +948,6 @@ dojo.declare("SonicZoom", null,{
 		},
 		
 		playCoinSound:function(){
-			console.log('Playing Coin Sound');
-						
 			if (this.objectList.length > 0) {
 				for (var i in this.objectList){
 				
@@ -957,7 +955,8 @@ dojo.declare("SonicZoom", null,{
 					if (this.objectList[i].declaredClass == "Obstacle") var objectType = "obstacle";
 					
 					var coinSound = this.soundDir + objectType + (this.numberOfLanes-this.objectList[i].lane) + '-' + (this.numberOfLanes-this.ship.currentLane)
-										
+					
+					this.audio.stop({channel : 'coin'+i});
 					this.audio.play({
 						url: coinSound,
 						channel: 'coin'+i
